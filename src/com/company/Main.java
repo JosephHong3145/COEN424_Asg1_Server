@@ -38,7 +38,11 @@ public class Main {
             socket = server.accept();
             isConnected = true;
 
-            while(isConnected){ //game loop
+            while(true){ //game loop
+                if(!isConnected){ //reinitialize if connection is lost
+                    socket = server.accept();
+                    isConnected = true;
+                }
                 parseIncoming();
             }
 
